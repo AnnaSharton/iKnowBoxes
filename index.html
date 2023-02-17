@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I know</title>
+    <style>
+        .container {   
+            margin: 0 auto; 
+            width: 550px;}
+        .row {
+            
+            display: flex;
+            flex-wrap: wrap;
+            padding-left: 0;  
+            gap: 15px;  
+        }
+        .inner {
+            display: flex;
+            flex: 0 0 30%;
+            flex-direction: column;
+            align-items: center;    
+        } 
+        .inner-text {
+            display: flex;
+            border: 1px solid #000;
+            flex: 0 0 30%;
+            min-height: 150px;
+            min-width: 150px;
+            justify-content: center; 
+            align-items: center;
+        }
+        .invisible {
+            visibility: hidden;
+        }
+    </style> 
+</head>
+<body>
+    <div class="container">
+    <div class="row" id="row">
+        <script>
+            let row = document.getElementById('row');
+            var boxes = ['HTML', 'CSS', 'SQLite', 'MySQL', 'Java', 'Python', 'JS', 'PHP', 'SQL']; 
+
+            for (var i=0; i<boxes.length; i++) {
+                row.insertAdjacentHTML("afterbegin",`<div class="inner">
+                    <div class="inner-text" id="inner-text${boxes[i]}">${boxes[i]}</div>
+                    <label><input type="checkbox" id="${boxes[i]}" onclick="hideShow('${boxes[i]}')">Знаю</label>
+                </div>`);
+
+            }
+            function hideShow(n) {
+                    let checkbox = document.getElementById(n); //получаю достп к блоку с текстом и к чекбоксу
+                    let innerText = document.getElementById('inner-text'+n); 
+
+                    if (checkbox.checked) { //если чекбокс выбран, то добавляю класс в список классов блока текста
+                        innerText.classList.add("invisible");
+                    } else { //иначе удаляю класс из списка
+                        innerText.classList.remove("invisible");
+                    } 
+            }
+        </script>
+    </div>
+    </div>
+</body>
+</html>
